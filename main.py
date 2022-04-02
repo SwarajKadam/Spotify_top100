@@ -3,12 +3,8 @@ import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-
-
-
 date = input("Which year you want to travel to? Type the data in the format YYYY-MM-DD : ")
 year = date[0:4]
-
 
 response = requests.get(f"https://www.billboard.com/charts/hot-100/{date}/")
 text = response.text
@@ -27,8 +23,6 @@ print(list_of_songs)
 CLIENT_ID = client_id
 CLIENT_SECRET = client_secret
 
-
-
 sp = spotipy.Spotify(
     auth_manager=SpotifyOAuth(
         scope="playlist-modify-private",
@@ -40,7 +34,6 @@ sp = spotipy.Spotify(
     )
 )
 
-
 user_id = sp.current_user()["id"]
 
 uri_list = []
@@ -50,8 +43,6 @@ for song in list_of_songs:
         uri = search["tracks"]["items"][0]["uri"]
         id = search["tracks"]["items"][0]["id"]
         uri_list.append(uri)
-
-        
 
     except:
         pass
